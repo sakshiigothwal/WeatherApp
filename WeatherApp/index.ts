@@ -49,7 +49,15 @@ async function checkweather(city : string){
         weatherEl.style.display = "block";
     }
 }
-searchBtn.addEventListener("click", ()=>{
-    checkweather(searchBox.value);
-})
+searchBtn.addEventListener("click", () => {
+  const city = searchBox.value.trim();
+  if (!city) {
+    errorEl.style.display = "block";
+    errorEl.querySelector("p")!.textContent = "Please enter a city name.";
+    weatherEl.style.display = "none";
+    return;
+  }
+  checkweather(city);
+});
+
 
